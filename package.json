@@ -1,0 +1,32 @@
+{
+  "name": "couchpcp",
+  "version": "1.1.0",
+  "description": "CouchDB partition copy utility",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run standard",
+    "start": "node index.js",
+    "standard": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glynnbird/couchpcp.git"
+  },
+  "keywords": [
+    "CouchDB"
+  ],
+  "author": "Glynn Bird <glynn.bird@gmail.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "standard": "^17.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "debug": "^4.3.4",
+    "qrate": "^1.2.1",
+    "yargs": "^17.4.1"
+  },
+  "bin": {
+    "couchpcp": "bin/couchpcp.bin.js"
+  }
+}
