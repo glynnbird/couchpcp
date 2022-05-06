@@ -63,6 +63,34 @@ Environment variables:
 > couchpcp
 ```
 
+## Programmatic usage
+
+Simply `require` in the `couchpcp` library and execute `couchpcp.migrate` with an object containing the capitalized parameters above:
+
+```js
+const couchpcp = require('couchpcp')
+
+const main = async () => {
+  // migrate partition 3
+  const config = {
+    SOURCE_URL: `${process.env.COUCH_URL}/alerts`,
+    TARGET_URL: `${process.env.COUCH_URL}/alerts3`,
+    PARTITION: '3',
+    BATCH_SIZE: 500,
+    CONCURRENCY: 2,
+    MAX_WRITES_PER_SECOND: 50
+  }
+  await couchpcp.migrate(config)
+
+  // migrate partition 2
+  config.TARGET_URL = `${process.env.COUCH_URL}/alerts2`
+  config.PARTITION = '2'
+  await couchpcp.migrate(config)
+}
+
+main()
+```
+
 ## Discussion
 
 The _couchpcp_ utility can transfer data from source to target faster than replication, but it isn't doing the same job as only winning revisions are transferred and attachments are dropped. Proceed with caution if your source database is changing when running _couchpcp_ or if your target database is not empty.

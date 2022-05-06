@@ -1,3 +1,6 @@
 #!/usr/bin/env node
 
-require('../index.js')
+const couchpcp = require('../index.js')
+const config = require('../lib/config.js')
+
+couchpcp.migrate(config)
